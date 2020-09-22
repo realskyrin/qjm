@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">qjm</string>
+    <string name="description_of_permission">请授予短信读取权限\n以确保程序正常运行</string>
+    <string name="go_authorization">去授权</string>
+</resources>

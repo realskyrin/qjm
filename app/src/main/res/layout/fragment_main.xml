@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="vm"
+            type="com.skyrin.qjm.ui.state.MainFragmentViewModel" />
+
+        <variable
+            name="readSmsAdapter"
+            type="androidx.recyclerview.widget.ListAdapter" />
+
+        <variable
+            name="unReadSmsAdapter"
+            type="androidx.recyclerview.widget.ListAdapter" />
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        android:overScrollMode="never">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fitsSystemWindows="true"
+            style="@style/AppTheme">
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tab_layout"
+                initTabAndPage="@{vm.initTabAndPage}"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                app:tabBackground="@color/colorPrimary"
+                app:tabIndicatorColor="@color/colorAccent"
+                app:tabIndicatorHeight="4dp"
+                app:tabSelectedTextColor="@color/colorAccent"
+                app:tabTextColor="@color/light_gray">
+
+                <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="未读⏳"/>
+
+                <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="已读⌛" />
+            </com.google.android.material.tabs.TabLayout>
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/view_pager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:overScrollMode="never"
+            android:visibility="gone"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_unread_sms"
+                adapter="@{unReadSmsAdapter}"
+                notifyCurrentListChanged="@{vm.notifyCurrentListChanged}"
+                submitList="@{vm.unreadSmsList}"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clipToPadding="false"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/adapter_uncheck_sms_item" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_read_sms"
+                adapter="@{readSmsAdapter}"
+                notifyCurrentListChanged="@{vm.notifyCurrentListChanged}"
+                submitList="@{vm.readSmsList}"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clipToPadding="false"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/adapter_uncheck_sms_item" />
+
+        </androidx.viewpager.widget.ViewPager>
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_permission"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/tv_permission"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:text="@string/description_of_permission"
+                app:layout_constraintBottom_toTopOf="@+id/guideline3"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <Button
+                android:id="@+id/btn_go_settings"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/go_authorization"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/guideline3" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.5" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.leinardi.android.speeddial.SpeedDialOverlayLayout
+            android:id="@+id/overlay"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/transparent"
+            android:foreground="@drawable/gradient_overlay"
+            app:clickable_overlay="true"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+        <com.leinardi.android.speeddial.SpeedDialView
+            android:id="@+id/sdv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            app:layout_behavior="@string/speeddial_scrolling_view_snackbar_behavior"
+            app:sdMainFabClosedIconColor="@color/colorPrimary"
+            app:sdMainFabClosedSrc="@drawable/ic_baseline_add_24"
+            app:sdMainFabOpenedIconColor="@color/colorPrimary"
+            app:sdOverlayLayout="@id/overlay" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|start"
+            app:sdMainFabClosedIconColor="@color/colorPrimary"
+            app:sdMainFabClosedSrc="@drawable/ic_baseline_add_24"
+            app:sdMainFabOpenedIconColor="@color/colorPrimary"
+            app:sdOverlayLayout="@id/overlay" />
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

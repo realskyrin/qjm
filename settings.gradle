@@ -1,0 +1,4 @@
+include ':binding_recyclerview'
+include ':architecthure'
+include ':app'
+rootProject.name = "qjm"

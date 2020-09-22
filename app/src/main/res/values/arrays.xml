@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="item_unread_msg_action">
+        <item>复制文本📋️</item>
+        <item>标为已读⌛</item>
+        <item>转发</item>
+        <item>删除👺</item>
+    </string-array>
+    <string-array name="item_read_msg_action">
+        <item>复制文本📋️</item>
+        <item>标为未读⏳️</item>
+        <item>转发️</item>
+        <item>删除👺</item>
+    </string-array>
+</resources>
