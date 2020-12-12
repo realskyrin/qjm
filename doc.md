@@ -2,7 +2,7 @@
 
 ### insert
 
-```roomsql
+```room sql
 INSERT INTO sms_table (sender,date,body,code,code_type,brand,if_read,sim_id)
 VALUES (
 "9531158811066590121",
@@ -18,7 +18,7 @@ VALUES (
 
 ### modify if_read
 
-```roomsql
+```room sql
 update sms_table
 set if_read=1
 where uid%2=0

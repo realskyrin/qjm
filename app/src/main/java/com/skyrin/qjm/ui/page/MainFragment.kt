@@ -236,9 +236,9 @@ class MainFragment : BaseFragment() {
         fab_add.setOnClickListener {
             val sms = Sms(
                 uid = 0,
-                sender = "1024",
+                sender = "10001",
                 date = SystemClock.currentThreadTimeMillis(),
-                body = "body",
+                body = "【菜鸟驿站】您的EMS包裹已到西安*****西门1店，请23:00前凭5-2-2008取。",
                 code = "233333",
                 codeType = if (Random.nextInt(2) > 0) "提货码" else "取件码",
                 brand = "顺丰速运",
